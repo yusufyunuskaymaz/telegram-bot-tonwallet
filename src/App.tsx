@@ -163,6 +163,7 @@ const App: React.FC = () => {
   return (
     <>
       <TonConnectButton />
+      <p>wallet added</p>
       {userFriendlyAddress && (
         <div>
           <span>User-friendly address: {userFriendlyAddress}</span>
