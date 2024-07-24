@@ -15,7 +15,17 @@ import Settings from "./icons/Settings";
 import Mine from "./icons/Mine";
 import Friends from "./icons/Friends";
 import Coins from "./icons/Coins";
-import { TonConnectButton } from "@tonconnect/ui-react";
+import {
+  TonConnectButton,
+  useTonAddress,
+  useTonWallet,
+  Wallet,
+  WalletInfoWithOpenMethod,
+} from "@tonconnect/ui-react";
+
+interface WalletWithName extends Wallet {
+  name?: string;
+}
 
 const App: React.FC = () => {
   const levelNames = [
@@ -144,9 +154,27 @@ const App: React.FC = () => {
     return () => clearInterval(interval);
   }, [profitPerHour]);
 
+  const userFriendlyAddress = useTonAddress();
+  const rawAddress = useTonAddress(false);
+
+  const wallet : WalletWithName | (WalletWithName & WalletInfoWithOpenMethod) | null =
+    useTonWallet();
+
   return (
     <>
       <TonConnectButton />
+      {userFriendlyAddress && (
+        <div>
+          <span>User-friendly address: {userFriendlyAddress}</span>
+          <span>Raw address: {rawAddress}</span>
+        </div>
+      )}
+      {wallet && (
+        <div>
+          <span>Connected wallet: {wallet.name}</span>
+          <span>Device: {wallet.device.appName}</span>
+        </div>
+      )}
       <div className="bg-black flex justify-center">
         <div className="w-full bg-black text-white h-screen font-bold flex flex-col max-w-xl">
           <div className="px-4 z-10">
