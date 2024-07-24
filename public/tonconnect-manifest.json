@@ -1,6 +1,7 @@
 {
-    "name": "Albert Wallet",
-    "icon": "https://picsum.photos/id/9/5000/3269",
-    "description": "This app uses TonConnect to interact with TON Blockchain for Albert.",
-    "permissions": ["sendMessages", "createInvoices"]
-}
+    "url": "https://telegram-bot-tonwallet.vercel.app/",                        
+    "name": "Alber-Ton-Wallet",                      
+    "iconUrl": "https://raw.githubusercontent.com/yusufyunuskaymaz/telegram-bot-tonwallet/main/public/logo-wstroke.17c2a836e7629a7380fd%20(1).png",               
+    "termsOfUseUrl": "https://telegram-bot-tonwallet.vercel.app/terms",     
+    "privacyPolicyUrl": "https://telegram-bot-tonwallet.vercel.app/privacyPolicyUrl"
+  }

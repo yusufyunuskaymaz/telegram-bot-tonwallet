@@ -15,17 +15,11 @@ import Settings from "./icons/Settings";
 import Mine from "./icons/Mine";
 import Friends from "./icons/Friends";
 import Coins from "./icons/Coins";
-import {
-  TonConnectButton,
-  useTonAddress,
-  useTonWallet,
-  Wallet,
-  WalletInfoWithOpenMethod,
-} from "@tonconnect/ui-react";
+import { TonConnectButton } from "@tonconnect/ui-react";
+import { useCounterContract } from "./hooks/useCounterContract";
+import { useTonConnect } from "./hooks/useTonConnect";
+import '@twa-dev/sdk';
 
-interface WalletWithName extends Wallet {
-  name?: string;
-}
 
 const App: React.FC = () => {
   const levelNames = [
@@ -154,28 +148,34 @@ const App: React.FC = () => {
     return () => clearInterval(interval);
   }, [profitPerHour]);
 
-  const userFriendlyAddress = useTonAddress();
-  const rawAddress = useTonAddress(false);
-
-  const wallet : WalletWithName | (WalletWithName & WalletInfoWithOpenMethod) | null =
-    useTonWallet();
-
+  const { connected } = useTonConnect();
+  const { value, address, sendIncrement } = useCounterContract();
   return (
     <>
-      <TonConnectButton />
-      <p>wallet added</p>
-      {userFriendlyAddress && (
-        <div>
-          <span>User-friendly address: {userFriendlyAddress}</span>
-          <span>Raw address: {rawAddress}</span>
+      <div className="App">
+        <div className="Container">
+          <TonConnectButton />
+
+          <div className="Card">
+            <b>Counter Address</b>
+            <div className="Hint">{address?.slice(0, 30) + "..."}</div>
+          </div>
+
+          <div className="Card">
+            <b>Counter Value</b>
+            <div>{value ?? "Loading..."}</div>
+          </div>
+
+          <a
+            className={`Button ${connected ? "Active" : "Disabled"}`}
+            onClick={() => {
+              sendIncrement();
+            }}
+          >
+            Increment
+          </a>
         </div>
-      )}
-      {wallet && (
-        <div>
-          <span>Connected wallet: {wallet.name}</span>
-          <span>Device: {wallet.device.appName}</span>
-        </div>
-      )}
+      </div>
       <div className="bg-black flex justify-center">
         <div className="w-full bg-black text-white h-screen font-bold flex flex-col max-w-xl">
           <div className="px-4 z-10">
