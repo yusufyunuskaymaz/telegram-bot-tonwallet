@@ -7,6 +7,7 @@ import {
 import './patch-local-storage-for-github-pages';
 import {CreateJettonRequestDto} from "./create-jetton-request-dto";
 
+
 class TonProofDemoApiService {
   private localStorageKey = 'demo-api-access-token';
 

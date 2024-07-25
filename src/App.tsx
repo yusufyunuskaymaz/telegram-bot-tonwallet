@@ -151,6 +151,8 @@ const App: React.FC = () => {
 
   const { connected } = useTonConnect();
   const { value, address, sendIncrement } = useCounterContract();
+
+  const a = 23
   return (
     <>
       <div className="App">
