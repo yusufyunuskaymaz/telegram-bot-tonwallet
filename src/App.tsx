@@ -19,6 +19,7 @@ import { TonConnectButton } from "@tonconnect/ui-react";
 import { useCounterContract } from "./hooks/useCounterContract";
 import { useTonConnect } from "./hooks/useTonConnect";
 import '@twa-dev/sdk';
+import UserAddress from "./components/User/UserAddress"
 
 
 const App: React.FC = () => {
@@ -153,6 +154,7 @@ const App: React.FC = () => {
   return (
     <>
       <div className="App">
+        <UserAddress />
         <div className="Container">
           <TonConnectButton />
 
