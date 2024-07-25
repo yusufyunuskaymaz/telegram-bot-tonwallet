@@ -1,5 +1,4 @@
 import { useTonAddress } from "@tonconnect/ui-react";
-import React from "react";
 import { useTonWallet } from "@tonconnect/ui-react";
 
 const UserAddress = () => {
